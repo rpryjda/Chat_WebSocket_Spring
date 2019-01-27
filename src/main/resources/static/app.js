@@ -5,8 +5,7 @@ function setConnected(connected) {
     $("#disconnect").prop("disabled", !connected);
     if (connected) {
         $("#conversation").show();
-    }
-    else {
+    } else {
         $("#conversation").hide();
     }
     $("#message").html("Welcome, have a great time on chat!");
@@ -19,7 +18,7 @@ function connect() {
         setConnected(true);
         console.log('Connected: ' + frame);
         stompClient.subscribe('/topic/message', function (message) {
-            showMessage(JSON.parse(message.body).content);
+            showMessage(JSON.parse(message.body));
         });
     });
 }
@@ -38,14 +37,25 @@ function sendMessage() {
 }
 
 function showMessage(message) {
-    $("#message").append("<tr><td>" + message + "</td></tr>");
+    $("#message").append("<tr><td>" +
+        "<div style='float:left'>" + message.username + "</div>" +
+        "<div style='float:right'>" + message.time + "</div>" +
+        "<div style='clear:both'>" +
+        message.content + "</td></tr>"
+    );
 }
 
 $(function () {
     $("form").on('submit', function (e) {
         e.preventDefault();
     });
-    $( "#connect" ).click(function() { connect(); });
-    $( "#disconnect" ).click(function() { disconnect(); });
-    $( "#send" ).click(function() { sendMessage(); });
+    $("#connect").click(function () {
+        connect();
+    });
+    $("#disconnect").click(function () {
+        disconnect();
+    });
+    $("#send").click(function () {
+        sendMessage();
+    });
 });
