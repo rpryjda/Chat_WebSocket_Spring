@@ -1,6 +1,6 @@
 package com.pryjda.chat.controller;
 
-import com.pryjda.chat.Service.ChatServiceImpl;
+import com.pryjda.chat.service.ChatService;
 import com.pryjda.chat.model.RequestMessage;
 import com.pryjda.chat.model.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +12,10 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class ChatController {
 
-    private final ChatServiceImpl chatService;
+    private final ChatService chatService;
 
     @Autowired
-    public ChatController(ChatServiceImpl chatService) {
+    public ChatController(ChatService chatService) {
         this.chatService = chatService;
     }
 

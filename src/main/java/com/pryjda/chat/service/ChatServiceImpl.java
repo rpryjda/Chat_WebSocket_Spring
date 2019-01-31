@@ -1,4 +1,4 @@
-package com.pryjda.chat.Service;
+package com.pryjda.chat.service;
 
 import com.pryjda.chat.entity.Chat;
 import com.pryjda.chat.model.RequestMessage;

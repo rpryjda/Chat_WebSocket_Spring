@@ -40,14 +40,23 @@
             </table>
         </div>
     </div>
-    <div class="col-md-6">
-        <form class="form-inline">
-            <div class="form-group">
-                <label for="sendingContent">Send message</label>
-                <input type="text" id="sendingContent" class="form-control" placeholder="Write here...">
-            </div>
-            <button id="send" class="btn btn-info" type="submit">Send</button>
-        </form>
+    <div class="row">
+        <div class="col-md-6">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="sendingContent">Send message</label>
+                    <input type="text" id="sendingContent" class="form-control" placeholder="Write here...">
+                </div>
+                <button id="send" class="btn btn-info" type="submit">Send</button>
+            </form>
+        </div>
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-4">
+            <p class="badge badge-dark">Connected chat members:</p>
+            <br>
+            <p id="connectedUsers" class="badge badge-dark"></p>
+        </div>
     </div>
 </div>
 </body>

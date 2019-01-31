@@ -38,12 +38,25 @@ function sendMessage() {
 
 function showMessage(message) {
     $("#message").append("<tr><td>" +
-        "<div style='float:left'>" + message.username + "</div>" +
+        "<div style='float:left; font-weight:bold'>" + message.username + "</div>" +
         "<div style='float:right'>" + message.time + "</div>" +
         "<div style='clear:both'>" +
         message.content + "</td></tr>"
     );
 }
+
+function checkConnectedUsers() {
+    $.getJSON('http://localhost:8080/connected-users', function (data) {
+        $("#connectedUsers").html("");
+        $.each(data, function (index, value) {
+            $("#connectedUsers").append(value + "<br><br>");
+        });
+    })
+};
+
+setInterval(function () {
+    checkConnectedUsers()
+}, 1000);
 
 $(function () {
     $("form").on('submit', function (e) {
