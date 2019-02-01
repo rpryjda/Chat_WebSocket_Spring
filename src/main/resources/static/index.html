@@ -17,18 +17,39 @@
 
 <div id="main-content" class="container">
     <div class="row">
+        <div class="col-md-3">
+        </div>
         <div class="col-md-6">
             <form class="form-inline">
                 <div class="form-group">
                     <label for="connect">Chat connection:</label>
                     <button id="connect" class="btn btn-success" type="submit">Connect</button>
-                    <button id="disconnect" class="btn btn-danger" type="submit" disabled="disabled">Disconnect</button>
+                    <button id="disconnect" class="btn btn-danger" type="submit" disabled="disabled">Disconnect
+                    </button>
                 </div>
             </form>
         </div>
+        <div class="col-md-3">
+            <p class="badge badge-dark">Connected chat members:</p>
+            <br>
+            <p id="connectedUsers" class="badge badge-dark"></p>
+        </div>
     </div>
-    <div class="row" style="height: 500px; overflow: auto">
-        <div class="col-md-12">
+    <div class="row">
+        <div class="col-md-3">
+            <table id="verbs-table" class="table table-hover">
+                <thead>
+                <tr>
+                    <th>VERBS</th>
+                    <th id="first_member"></th>
+                    <th id="second_member"></th>
+                </tr>
+                </thead>
+                <tbody id="verb">
+                </tbody>
+            </table>
+        </div>
+        <div id="tableContainer" class="col-md-9">
             <table id="conversation" class="table table-striped">
                 <thead>
                 <tr>
@@ -41,7 +62,9 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-9">
             <form class="form-inline">
                 <div class="form-group">
                     <label for="sendingContent">Send message</label>
@@ -49,13 +72,6 @@
                 </div>
                 <button id="send" class="btn btn-info" type="submit">Send</button>
             </form>
-        </div>
-        <div class="col-md-2">
-        </div>
-        <div class="col-md-4">
-            <p class="badge badge-dark">Connected chat members:</p>
-            <br>
-            <p id="connectedUsers" class="badge badge-dark"></p>
         </div>
     </div>
 </div>

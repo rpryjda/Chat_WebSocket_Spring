@@ -38,9 +38,9 @@ function sendMessage() {
 
 function showMessage(message) {
     $("#message").append("<tr><td>" +
-        "<div style='float:left; font-weight:bold'>" + message.username + "</div>" +
-        "<div style='float:right'>" + message.time + "</div>" +
-        "<div style='clear:both'>" +
+        "<div id='username_app_js'>" + message.username + "</div>" +
+        "<div id='time_app_js'>" + message.time + "</div>" +
+        "<div id='clear_both_app_js'>" +
         message.content + "</td></tr>"
     );
 }
@@ -56,6 +56,19 @@ function checkConnectedUsers() {
 
 setInterval(function () {
     checkConnectedUsers()
+}, 1000);
+
+function getVerbs() {
+    $.getJSON('http://localhost:8080/verbs', function (data) {
+        $("#verb").html("");
+        $.each(data, function (index, value) {
+            $("#verb").append("<tr><td>" + value.verbBaseForm + "</td></tr>");
+        });
+    })
+};
+
+setInterval(function () {
+    getVerbs()
 }, 1000);
 
 $(function () {

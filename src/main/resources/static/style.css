@@ -1,0 +1,14 @@
+#tableContainer {
+    height: 500px;
+    overflow: auto;
+}
+#username_app_js{
+    float:left;
+    font-weight:bold;
+}
+#time_app_js{
+    float:right;
+}
+#clear_both_app_js{
+    clear:both;
+}
