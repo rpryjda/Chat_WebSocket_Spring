@@ -1,8 +1,8 @@
 package com.pryjda.chat.service;
 
 import com.pryjda.chat.entity.Chat;
-import com.pryjda.chat.model.RequestMessage;
-import com.pryjda.chat.model.ResponseMessage;
+import com.pryjda.chat.model.request.RequestMessage;
+import com.pryjda.chat.model.response.ResponseMessage;
 import com.pryjda.chat.repository.ChatRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +16,12 @@ public class ChatServiceImpl implements ChatService {
 
     private final ChatRepository chatRepository;
 
-    private ModelMapper mapper = new ModelMapper();
+    private final ModelMapper mapper;
 
     @Autowired
-    public ChatServiceImpl(ChatRepository chatRepository) {
+    public ChatServiceImpl(ChatRepository chatRepository, ModelMapper mapper) {
         this.chatRepository = chatRepository;
+        this.mapper = mapper;
     }
 
     @Override

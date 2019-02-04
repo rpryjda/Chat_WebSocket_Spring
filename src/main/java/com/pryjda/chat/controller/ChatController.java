@@ -1,8 +1,8 @@
 package com.pryjda.chat.controller;
 
 import com.pryjda.chat.service.ChatService;
-import com.pryjda.chat.model.RequestMessage;
-import com.pryjda.chat.model.ResponseMessage;
+import com.pryjda.chat.model.request.RequestMessage;
+import com.pryjda.chat.model.response.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;

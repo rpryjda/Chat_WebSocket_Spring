@@ -12,3 +12,15 @@
 #clear_both_app_js{
     clear:both;
 }
+.body_table_app_js{
+    text-align: center;
+}
+#username_no1{
+    text-align: center;
+}
+#username_no2{
+    text-align: center;
+}
+#message_connected_users{
+    color: red;
+}

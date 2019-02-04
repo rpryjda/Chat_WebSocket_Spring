@@ -1,4 +1,4 @@
-package com.pryjda.chat.model;
+package com.pryjda.chat.model.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;

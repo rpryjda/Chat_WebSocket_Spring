@@ -1,4 +1,4 @@
-package com.pryjda.chat.model;
+package com.pryjda.chat.model.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

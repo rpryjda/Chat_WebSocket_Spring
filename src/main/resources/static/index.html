@@ -36,20 +36,42 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-1">
             <table id="verbs-table" class="table table-hover">
                 <thead>
                 <tr>
                     <th>VERBS</th>
-                    <th id="first_member"></th>
-                    <th id="second_member"></th>
                 </tr>
                 </thead>
                 <tbody id="verb">
                 </tbody>
             </table>
         </div>
-        <div id="tableContainer" class="col-md-9">
+        <div class="col-md-1">
+            <table id="table_user_no1" class="table table-hover">
+                <thead>
+                <tr>
+                    <th id="username_no1"></th>
+                </tr>
+                </thead>
+                <tbody id="statistics_body_no1">
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-1">
+            <table id="table_user_no2" class="table table-hover">
+                <thead>
+                <tr>
+                    <th id="username_no2"></th>
+                </tr>
+                </thead>
+                <tbody id="statistics_body_no2">
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-1">
+        </div>
+        <div id="tableContainer" class="col-md-8">
             <table id="conversation" class="table table-striped">
                 <thead>
                 <tr>
@@ -74,6 +96,10 @@
             </form>
         </div>
     </div>
+    <p id="message_connected_users"></p>
+    <label id="label_statistics" for="start">Choose statistics:</label>
+    <button id="start" class="btn btn-info" type="submit">Start new</button>
+    <button id="total" class="btn btn-info" type="submit">Total</button>
 </div>
 </body>
 </html>

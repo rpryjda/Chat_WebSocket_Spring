@@ -1,7 +1,7 @@
 package com.pryjda.chat.listener;
 
 import com.pryjda.chat.utils.components.ConnectedUsers;
-import com.pryjda.chat.model.ResponseMessage;
+import com.pryjda.chat.model.response.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
