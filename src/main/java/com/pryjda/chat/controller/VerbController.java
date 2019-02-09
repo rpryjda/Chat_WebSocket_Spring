@@ -29,5 +29,4 @@ public class VerbController {
     public List<Verb> getVerbs(@PathVariable(value = "number") int no) {
         return verbService.getPaginatedVerbs(no, 10);
     }
-
 }

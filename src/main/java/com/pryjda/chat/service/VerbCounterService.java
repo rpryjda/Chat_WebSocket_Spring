@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface VerbCounterService {
 
-    List<Integer> countUsedVerbsByUsername(String username);
+    List<Integer> countUsedVerbsByUsername(String username, int page, int size);
 }

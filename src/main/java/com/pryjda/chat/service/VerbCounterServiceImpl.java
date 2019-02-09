@@ -31,9 +31,9 @@ public class VerbCounterServiceImpl implements VerbCounterService {
     }
 
     @Override
-    public List<Integer> countUsedVerbsByUsername(String username) {
+    public List<Integer> countUsedVerbsByUsername(String username, int page, int size) {
 
-        List<Verb> verbs = verbService.getVerbs();
+        List<Verb> verbs = verbService.getPaginatedVerbs(page, size);
         List<Chat> conversations;
 
         if (counterTime.getStartTime() == null) {

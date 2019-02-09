@@ -9,4 +9,6 @@ import java.util.List;
 public interface VerbRepository extends JpaRepository<Verb, Long> {
 
     List<Verb> findAllBy(Pageable pageable);
+
+    Integer countAllBy();
 }

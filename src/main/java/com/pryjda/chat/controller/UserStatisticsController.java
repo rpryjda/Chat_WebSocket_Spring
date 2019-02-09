@@ -5,8 +5,10 @@ import com.pryjda.chat.service.UserStatisticsService;
 import com.pryjda.chat.utils.components.CounterTime;
 import com.pryjda.chat.utils.components.UserStatistics;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
@@ -34,13 +36,14 @@ public class UserStatisticsController {
     }
 
     @GetMapping("/statistics")
-    public UserStatistics getUserStatisticsService() {
+    public UserStatistics getUserStatistics() {
         userStatisticsService.updateUserStatistics();
         return userStatistics;
     }
 
     @GetMapping("/statistics/start")
-    public void getStart() {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void setStart() {
         LocalDateTime timeStart = LocalDateTime.now();
         counterTime.setStartTime(timeStart);
         ResponseMessage responseMessage = new ResponseMessage();
@@ -51,7 +54,8 @@ public class UserStatisticsController {
     }
 
     @GetMapping("/statistics/total")
-    public void getTotal() {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void setTotal() {
         ResponseMessage responseMessage = new ResponseMessage();
         responseMessage.setUsername("info");
         responseMessage.setTime(LocalDateTime.now());

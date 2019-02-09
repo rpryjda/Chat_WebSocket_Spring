@@ -74,11 +74,14 @@ setInterval(function () {
 }, 1000);
 
 function getVerbs() {
-    $.getJSON('http://localhost:8080/verbs', function (data) {
-        $("#verb").html("");
-        $.each(data, function (index, value) {
-            $("#verb").append("<tr><td>" + value.verbBaseForm + "</td></tr>");
-        });
+    $.getJSON('http://localhost:8080/page/current', function (pageData) {
+        var pageNumber = Number(pageData.currentPage);
+        $.getJSON('http://localhost:8080/verbs/page/' + pageNumber, function (data) {
+            $("#verb").html("");
+            $.each(data, function (index, value) {
+                $("#verb").append("<tr><td>" + value.verbBaseForm + "</td></tr>");
+            });
+        })
     })
 };
 
@@ -115,6 +118,38 @@ setInterval(function () {
     getStatistics()
 }, 1000);
 
+function leftClick() {
+    $.getJSON('http://localhost:8080/page/current', function (pageData) {
+        var pageNumber = Number(pageData.currentPage);
+        pageNumber--;
+        if (pageNumber >= 0) {
+            $.get('http://localhost:8080/page/set-current/' + pageNumber.toString());
+            $.getJSON('http://localhost:8080/verbs/page/' + pageNumber, function (data) {
+                $("#verb").html("");
+                $.each(data, function (index, value) {
+                    $("#verb").append("<tr><td>" + value.verbBaseForm + "</td></tr>");
+                });
+            })
+        }
+    })
+};
+
+function rightClick() {
+    $.getJSON('http://localhost:8080/page/current', function (pageData) {
+        var pageNumber = Number(pageData.currentPage);
+        pageNumber++;
+        if (pageData.maxPage >= pageNumber) {
+            $.get('http://localhost:8080/page/set-current/' + pageNumber.toString());
+            $.getJSON('http://localhost:8080/verbs/page/' + pageNumber, function (data) {
+                $("#verb").html("");
+                $.each(data, function (index, value) {
+                    $("#verb").append("<tr><td>" + value.verbBaseForm + "</td></tr>");
+                });
+            })
+        }
+    })
+};
+
 $(function () {
     $("form").on('submit', function (e) {
         e.preventDefault();
@@ -139,4 +174,10 @@ $(function () {
     $("#label_statistics").hide();
     $("#start").hide();
     $("#total").hide();
+    $("#left_arrow").click(function () {
+        leftClick();
+    });
+    $("#right_arrow").click(function () {
+        rightClick();
+    });
 });

@@ -9,4 +9,6 @@ public interface VerbService {
     List<Verb> getVerbs();
 
     List<Verb> getPaginatedVerbs(int page, int size);
+
+    Integer getLastPageForPaginatedVerbs(int size);
 }

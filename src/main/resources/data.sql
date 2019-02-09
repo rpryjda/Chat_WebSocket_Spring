@@ -10,4 +10,26 @@ VALUES
        ('Suffer', 'suffered', 'suffered', 'suffering'),
        ('Acquire', 'acquired', 'acquired', 'acquiring'),
        ('Adjust', 'adjusted', 'adjusted', 'adjusting'),
-       ('Throw', 'threw', 'thrown', 'throwing');
+       ('Throw', 'threw', 'thrown', 'throwing'),
+
+       ('Abandon', 'abandoned', 'abandoned', 'abandoning'),
+       ('Relieve', 'relieved', 'relieved', 'relieving'),
+       ('Qualify', 'qualified', 'qualified', 'qualifying'),
+       ('Retire', 'retired', 'retired', 'retiring'),
+       ('Attach', 'attached', 'attached', 'attaching'),
+       ('Convince', 'convinced', 'convinced', 'convincing'),
+       ('Imply', 'implied', 'implied', 'implying'),
+       ('Insist', 'insisted', 'insisted', 'insisting'),
+       ('Accuse', 'accused', 'accused', 'accusing'),
+       ('Specify', 'specified', 'specified', 'specifying'),
+
+       ('Reflect', 'reflected', 'reflected', 'reflecting'),
+       ('Justify', 'justified', 'justified', 'justifying'),
+       ('Compete', 'competed', 'competed', 'competing'),
+       ('Negotiate', 'negotiated', 'negotiated', 'negotiating'),
+       ('Weight', 'weighted', 'weighted', 'weighting'),
+       ('Establish', 'established', 'established', 'establishing'),
+       ('Pursue', 'pursued', 'pursued', 'pursuing'),
+       ('Warn', 'warned', 'warned', 'warning'),
+       ('Announce', 'announced', 'announced', 'announcing'),
+       ('Approve', 'approved', 'approved', 'approving');

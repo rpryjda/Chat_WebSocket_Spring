@@ -28,4 +28,10 @@ public class VerbServiceImpl implements VerbService {
         return verbRepository.findAllBy(PageRequest.of(page, size));
     }
 
+    @Override
+    public Integer getLastPageForPaginatedVerbs(int size) {
+        Integer allVerbs = verbRepository.countAllBy();
+        return (allVerbs-1)/size;
+    }
+
 }
