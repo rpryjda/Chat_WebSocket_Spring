@@ -93,11 +93,14 @@
                  src="https://cdns.iconmonstr.com/wp-content/assets/preview/2012/240/iconmonstr-arrow-24.png"
                  alt="right">
         </div>
-        <div class="col-md-9">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-8" id="text_form_container">
             <form class="form-inline">
                 <div class="form-group">
-                    <label for="sendingContent">Send message</label>
-                    <input type="text" id="sendingContent" class="form-control" placeholder="Write here...">
+                    <textarea id="sendingContent" class="form-control"
+                              rows="5" cols="60" placeholder="Write here...">
+                    </textarea>
                 </div>
                 <button id="send" class="btn btn-info" type="submit">Send</button>
             </form>

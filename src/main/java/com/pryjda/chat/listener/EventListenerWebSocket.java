@@ -36,6 +36,7 @@ public class EventListenerWebSocket {
         messagingTemplate.convertAndSend("/topic/message", responseMessage);
 
         connectedUsers.getConnectedUsers().add(sha.getUser().getName());
+        messagingTemplate.convertAndSend("/topic/connected-users", connectedUsers);
     }
 
     @EventListener
@@ -49,6 +50,7 @@ public class EventListenerWebSocket {
         messagingTemplate.convertAndSend("/topic/message", responseMessage);
 
         connectedUsers.getConnectedUsers().remove(sha.getUser().getName());
+        messagingTemplate.convertAndSend("/topic/connected-users", connectedUsers);
     }
 
 }

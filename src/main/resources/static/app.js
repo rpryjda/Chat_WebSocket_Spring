@@ -20,6 +20,10 @@ function connect() {
         stompClient.subscribe('/topic/message', function (message) {
             showMessage(JSON.parse(message.body));
         });
+        stompClient.subscribe('/topic/connected-users', function (message) {
+            showConnectedUsers(JSON.parse(message.body));
+        });
+        initSendingConnectedUsers();
     });
 }
 
@@ -29,6 +33,12 @@ function disconnect() {
     }
     setConnected(false);
     console.log("Disconnected");
+    showDisconnected();
+    ifNotBothConnected();
+}
+
+function initSendingConnectedUsers() {
+    stompClient.send("/app/connected", {}, JSON.stringify({}));
 }
 
 function sendMessage() {
@@ -45,33 +55,39 @@ function showMessage(message) {
     );
 }
 
-function checkConnectedUsers() {
-    $.getJSON('http://localhost:8080/users/connected', function (data) {
-        $("#connectedUsers").html("");
-        $.each(data, function (index, value) {
-            $("#connectedUsers").append(value.username + "<br><br>");
-        });
-        if (data.length === 2) {
-            $("#table_user_no1").show();
-            $("#table_user_no2").show();
-            $("#start").show();
-            $("#total").show();
-            $("#label_statistics").show();
-            $("#message_connected_users").empty();
-        } else {
-            $("#table_user_no1").hide();
-            $("#table_user_no2").hide();
-            $("#start").hide();
-            $("#total").hide();
-            $("#label_statistics").hide();
-            $("#message_connected_users").html("The statistics cannot be displayed before all users connected");
-        }
-    })
-};
+function showConnectedUsers(message) {
+    $("#connectedUsers").html("");
+    $.each(message.connectedUsers, function (index, value) {
+        $("#connectedUsers").append(value + "<br><br>");
+    });
+    if (message.connectedUsers.length === 2) {
+        ifBothConnected()
+    } else {
+        ifNotBothConnected()
+    }
+}
 
-setInterval(function () {
-    checkConnectedUsers()
-}, 1000);
+function showDisconnected() {
+    $("#connectedUsers").html("disconnected");
+}
+
+function ifBothConnected() {
+    $("#table_user_no1").show();
+    $("#table_user_no2").show();
+    $("#start").show();
+    $("#total").show();
+    $("#label_statistics").show();
+    $("#message_connected_users").empty();
+}
+
+function ifNotBothConnected() {
+    $("#table_user_no1").hide();
+    $("#table_user_no2").hide();
+    $("#start").hide();
+    $("#total").hide();
+    $("#label_statistics").hide();
+    $("#message_connected_users").html("The statistics cannot be displayed before both users connected");
+}
 
 function getVerbs() {
     $.getJSON('http://localhost:8080/page/current', function (pageData) {
@@ -180,4 +196,6 @@ $(function () {
     $("#right_arrow").click(function () {
         rightClick();
     });
+    showDisconnected();
+    ifNotBothConnected();
 });
