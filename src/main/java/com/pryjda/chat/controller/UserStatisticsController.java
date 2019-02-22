@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @RestController
@@ -44,13 +45,26 @@ public class UserStatisticsController {
     @GetMapping("/statistics/start")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void setStart() {
-        LocalDateTime timeStart = LocalDateTime.now();
-        counterTime.setStartTime(timeStart);
+        LocalDateTime now = LocalDateTime.now();
         ResponseMessage responseMessage = new ResponseMessage();
         responseMessage.setUsername("info");
-        responseMessage.setTime(timeStart);
+        responseMessage.setTime(now);
         responseMessage.setContent("SET NEW STATISTICS");
         messagingTemplate.convertAndSend("/topic/message", responseMessage);
+        counterTime.setStartTime(now);
+    }
+
+    @GetMapping("/statistics/today")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void setToday() {
+        LocalDateTime now = LocalDateTime.now();
+        ResponseMessage responseMessage = new ResponseMessage();
+        responseMessage.setUsername("info");
+        responseMessage.setTime(now);
+        responseMessage.setContent("SET TODAY STATISTICS");
+        messagingTemplate.convertAndSend("/topic/message", responseMessage);
+        LocalDate dateStart = LocalDate.now();
+        counterTime.setStartTime(dateStart.atStartOfDay());
     }
 
     @GetMapping("/statistics/total")

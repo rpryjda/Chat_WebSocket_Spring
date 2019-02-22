@@ -24,9 +24,11 @@ public class VerbController {
         return verbService.getVerbs();
     }
 
-    @GetMapping("/verbs/page/{number}")
+    @GetMapping("/verbs/page/{pageNumber}/size/{pageSize}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Verb> getVerbs(@PathVariable(value = "number") int no) {
-        return verbService.getPaginatedVerbs(no, 10);
+    public List<Verb> getVerbs(@PathVariable(value = "pageNumber") int pageNumber,
+                               @PathVariable(value = "pageSize") int pageSize) {
+
+        return verbService.getPaginatedVerbs(pageNumber, pageSize);
     }
 }

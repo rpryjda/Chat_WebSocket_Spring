@@ -32,3 +32,6 @@
     transform: scaleX(-1);
     height: 30px;
 }
+#label_statistics{
+    text-align: center;
+}

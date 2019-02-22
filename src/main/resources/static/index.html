@@ -95,21 +95,32 @@
         </div>
         <div class="col-md-1">
         </div>
-        <div class="col-md-8" id="text_form_container">
-            <form class="form-inline">
-                <div class="form-group">
+        <div class="col-md-8 d-flex justify-content-center">
+            <p id="message_connected_users"></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <label id="label_statistics" for="start">Choose statistics:</label>
+            <div class="btn-group-vertical">
+                <button id="start" class="btn btn-light" type="submit">From now</button>
+                <button id="today" class="btn btn-light" type="submit">Today</button>
+                <button id="total" class="btn btn-light" type="submit">Total</button>
+            </div>
+        </div>
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-8 d-flex justify-content-center" id="text_form_container">
+            <form>
+                <div class="form-group" id="main_textarea">
                     <textarea id="sendingContent" class="form-control"
-                              rows="5" cols="60" placeholder="Write here...">
+                              rows="5" cols="70" placeholder="Write here...">
                     </textarea>
                 </div>
                 <button id="send" class="btn btn-info" type="submit">Send</button>
             </form>
         </div>
     </div>
-    <p id="message_connected_users"></p>
-    <label id="label_statistics" for="start">Choose statistics:</label>
-    <button id="start" class="btn btn-info" type="submit">Start new</button>
-    <button id="total" class="btn btn-info" type="submit">Total</button>
 </div>
 </body>
 </html>

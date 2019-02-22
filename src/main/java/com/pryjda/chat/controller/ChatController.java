@@ -3,7 +3,11 @@ package com.pryjda.chat.controller;
 import com.pryjda.chat.service.ChatService;
 import com.pryjda.chat.model.request.RequestMessage;
 import com.pryjda.chat.model.response.ResponseMessage;
+import com.pryjda.chat.service.UserStatisticsService;
+import com.pryjda.chat.service.VerbService;
 import com.pryjda.chat.utils.components.ConnectedUsers;
+import com.pryjda.chat.utils.components.UserStatistics;
+import com.pryjda.chat.utils.components.VerbsPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -17,10 +21,27 @@ public class ChatController {
 
     private final ConnectedUsers connectedUsers;
 
+    private final UserStatistics userStatistics;
+
+    private final UserStatisticsService userStatisticsService;
+
+    private final VerbService verbService;
+
+    private final VerbsPage verbsPage;
+
     @Autowired
-    public ChatController(ChatService chatService, ConnectedUsers connectedUsers) {
+    public ChatController(ChatService chatService,
+                          ConnectedUsers connectedUsers,
+                          UserStatistics userStatistics,
+                          UserStatisticsService userStatisticsService,
+                          VerbService verbService,
+                          VerbsPage verbsPage) {
         this.chatService = chatService;
         this.connectedUsers = connectedUsers;
+        this.userStatistics = userStatistics;
+        this.userStatisticsService = userStatisticsService;
+        this.verbService = verbService;
+        this.verbsPage = verbsPage;
     }
 
     @MessageMapping("/chat")
@@ -36,5 +57,23 @@ public class ChatController {
     public ConnectedUsers sendConnectedUsers() throws Exception {
 
         return connectedUsers;
+    }
+
+    @MessageMapping("/verbs")
+    @SendTo("/topic/verbs")
+    public VerbsPage sendVerbsDetails() throws Exception {
+
+        verbsPage.setCurrentPage(0);
+        verbsPage.setVerbs(verbService.getPaginatedVerbs(0, 10));
+        verbsPage.setMaxPage(verbService.getLastPageForPaginatedVerbs(10));
+        return verbsPage;
+    }
+
+    @MessageMapping("/statistics")
+    @SendTo("/topic/statistics")
+    public UserStatistics sendUsersStatistics() throws Exception {
+
+        userStatisticsService.updateUserStatistics();
+        return userStatistics;
     }
 }
