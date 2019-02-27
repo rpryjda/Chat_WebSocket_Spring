@@ -88,26 +88,22 @@ function showDisconnected() {
 }
 
 function ifBothConnected() {
+    $("#first-row-empty").show();
     $("#table_user_no1").show();
     $("#table_user_no2").show();
-    $("#start").show();
-    $("#today").show();
-    $("#total").show();
-    $("#left_arrow").show();
-    $("#right_arrow").show();
+    $("#statistic_navigation_page_changer").show();
+    $("#statistics_navigation_time_changer").show();
     $("#verbs-table").show();
     $("#label_statistics").show();
     $("#message_connected_users").empty();
 }
 
 function ifNotBothConnected() {
+    $("#first-row-empty").hide();
     $("#table_user_no1").hide();
     $("#table_user_no2").hide();
-    $("#start").hide();
-    $("#today").hide();
-    $("#total").hide();
-    $("#left_arrow").hide();
-    $("#right_arrow").hide();
+    $("#statistic_navigation_page_changer").hide();
+    $("#statistics_navigation_time_changer").hide();
     $("#verbs-table").hide();
     $("#label_statistics").hide();
     $("#message_connected_users").html("The statistics cannot be displayed before both users connected");
@@ -117,7 +113,9 @@ function showVerbs(message) {
     $("#verb").html("");
     $.each(message.verbs, function (index, value) {
         $("#verb").append("<tr><td>" + value.verbBaseForm + "</td></tr>");
-    })
+    });
+    $('#page-number').html(message.currentPage);
+    $('#page-size').html(message.size);
 }
 
 function postStart() {
@@ -151,9 +149,9 @@ function leftClick() {
         var pageNumber = Number(pageData.currentPage);
         pageNumber--;
         if (pageNumber >= 0) {
-            $.get('http://localhost:8080/page/' + pageNumber.toString() + '/size/10');
+            $.get('http://localhost:8080/page/' + pageNumber.toString() + '/size/' + pageData.size.toString());
         }
-    })
+    });
 }
 
 function rightClick() {
@@ -161,9 +159,49 @@ function rightClick() {
         var pageNumber = Number(pageData.currentPage);
         pageNumber++;
         if (pageData.maxPage >= pageNumber) {
-            $.get('http://localhost:8080/page/' + pageNumber.toString() + '/size/10');
+            $.get('http://localhost:8080/page/' + pageNumber.toString() + '/size/' + pageData.size.toString());
+        } else {
+            $.get('http://localhost:8080/page/' + pageData.maxPage.toString() + '/size/' + pageData.size.toString());
         }
-    })
+    });
+}
+
+function leftClickPageSize() {
+    $.getJSON('http://localhost:8080/page', function (pageData) {
+        var pageSize = Number(pageData.size);
+        pageSize--;
+        if (pageSize >= 1) {
+            $.get('http://localhost:8080/page/' + pageData.currentPage.toString() + '/size/' + pageSize.toString());
+        }
+    });
+}
+
+function rightClickPageSize() {
+    $.getJSON('http://localhost:8080/page', function (pageData) {
+        var pageSize = Number(pageData.size);
+        pageSize++;
+        if (10 >= pageSize) {
+            $.get('http://localhost:8080/page/' + pageData.currentPage.toString() + '/size/' + pageSize.toString());
+        }
+    });
+}
+
+function displayMaxPageInfo() {
+    $.getJSON('http://localhost:8080/page', function (pageData) {
+        $('#max-page-info').html("min: 0, max: " + pageData.maxPage);
+    });
+}
+
+function notDisplayMaxPageInfo() {
+    $('#max-page-info').html("");
+}
+
+function displaySizeInfo() {
+    $('#size-info').html("range: 1 to 10");
+}
+
+function notDisplaySizeInfo() {
+    $('#size-info').html("");
 }
 
 $(function () {
@@ -188,14 +226,12 @@ $(function () {
     $("#total").click(function () {
         postTotal();
     });
+    $("#first-row-empty").hide();
     $("#table_user_no1").hide();
     $("#table_user_no2").hide();
     $("#label_statistics").hide();
-    $("#start").hide();
-    $("#today").hide();
-    $("#total").hide();
-    $("#left_arrow").hide();
-    $("#right_arrow").hide();
+    $("#statistic_navigation_page_changer").hide();
+    $("#statistics_navigation_time_changer").hide();
     $("#verbs-table").hide();
     $("#left_arrow").click(function () {
         leftClick();
@@ -203,6 +239,24 @@ $(function () {
     $("#right_arrow").click(function () {
         rightClick();
     });
+    $("#left_arrow_size").click(function () {
+        leftClickPageSize();
+    });
+    $("#right_arrow_size").click(function () {
+        rightClickPageSize();
+    });
     showDisconnected();
     ifNotBothConnected();
+    $("#page_label").mouseover(function () {
+        displayMaxPageInfo();
+    });
+    $("#page_label").mouseout(function () {
+        notDisplayMaxPageInfo();
+    });
+    $("#size_label").mouseover(function () {
+        displaySizeInfo();
+    });
+    $("#size_label").mouseout(function () {
+        notDisplaySizeInfo();
+    });
 });

@@ -44,11 +44,13 @@ public class UserStatisticsServiceImpl implements UserStatisticsService {
             users.stream()
                     .filter(user -> user.equalsIgnoreCase(userOne))
                     .forEach(user -> userStatistics
-                            .setVerbOccurrenceNo1(verbCounterService.countUsedVerbsByUsername(user, verbsPage.getCurrentPage(), 10)));
+                            .setVerbOccurrenceNo1(verbCounterService
+                                    .countUsedVerbsByUsername(user, verbsPage.getCurrentPage(), verbsPage.getSize())));
             users.stream()
                     .filter(user -> user.equalsIgnoreCase(userTwo))
                     .forEach(user -> userStatistics
-                            .setVerbOccurrenceNo2(verbCounterService.countUsedVerbsByUsername(user, verbsPage.getCurrentPage(), 10)));
+                            .setVerbOccurrenceNo2(verbCounterService
+                                    .countUsedVerbsByUsername(user, verbsPage.getCurrentPage(), verbsPage.getSize())));
         }
     }
 }

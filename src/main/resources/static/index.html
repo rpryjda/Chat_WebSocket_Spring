@@ -18,9 +18,11 @@
 
 <div id="main-content" class="container">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
+            <div id="first-row-empty">
+            </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-5">
             <form class="form-inline">
                 <div class="form-group">
                     <label for="connect">Chat connection:</label>
@@ -85,30 +87,43 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3">
-            <img id="left_arrow"
-                 src="https://cdns.iconmonstr.com/wp-content/assets/preview/2012/240/iconmonstr-arrow-24.png"
-                 alt="left">
-            <img id="right_arrow"
-                 src="https://cdns.iconmonstr.com/wp-content/assets/preview/2012/240/iconmonstr-arrow-24.png"
-                 alt="right">
-        </div>
-        <div class="col-md-1">
+        <div class="col-md-4">
+            <div id="statistic_navigation_page_changer">
+                <img id="left_arrow"
+                     src="http://clipartmag.com/images/point-finger-clipart-22.jpg"
+                     alt="left">
+                <label id="page_label">Page:</label>
+                <span id="page-number"></span>
+                <img id="right_arrow"
+                     src="http://clipartmag.com/images/point-finger-clipart-22.jpg"
+                     alt="right">
+                <span id="max-page-info"></span>
+                <br>
+                <img id="left_arrow_size"
+                     src="http://clipartmag.com/images/point-finger-clipart-22.jpg"
+                     alt="left">
+                <label id="size_label">Size:</label>
+                <span id="page-size">1</span>
+                <img id="right_arrow_size"
+                     src="http://clipartmag.com/images/point-finger-clipart-22.jpg"
+                     alt="right">
+                <span id="size-info"></span>
+            </div>
         </div>
         <div class="col-md-8 d-flex justify-content-center">
             <p id="message_connected_users"></p>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3">
-            <label id="label_statistics" for="start">Choose statistics:</label>
-            <div class="btn-group-vertical">
-                <button id="start" class="btn btn-light" type="submit">From now</button>
-                <button id="today" class="btn btn-light" type="submit">Today</button>
-                <button id="total" class="btn btn-light" type="submit">Total</button>
+        <div class="col-md-4">
+            <div id="statistics_navigation_time_changer">
+                <label id="label_statistics" for="start">Choose statistics:</label>
+                <div class="btn-group-vertical">
+                    <button id="start" class="btn btn-light" type="submit">From now</button>
+                    <button id="today" class="btn btn-light" type="submit">Today</button>
+                    <button id="total" class="btn btn-light" type="submit">Total</button>
+                </div>
             </div>
-        </div>
-        <div class="col-md-1">
         </div>
         <div class="col-md-8 d-flex justify-content-center" id="text_form_container">
             <form>

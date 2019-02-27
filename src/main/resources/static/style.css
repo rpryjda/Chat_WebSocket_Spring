@@ -1,5 +1,5 @@
 #tableContainer {
-    height: 500px;
+    height: 550px;
     overflow: auto;
 }
 #username_app_js{
@@ -32,6 +32,20 @@
     transform: scaleX(-1);
     height: 30px;
 }
+#right_arrow_size{
+    height: 30px;
+}
+#left_arrow_size{
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    height: 30px;
+}
 #label_statistics{
     text-align: center;
+}
+#max-page-info{
+    color: red;
+}
+#size-info{
+    color: red;
 }

@@ -64,8 +64,9 @@ public class ChatController {
     public VerbsPage sendVerbsDetails() throws Exception {
 
         verbsPage.setCurrentPage(0);
-        verbsPage.setVerbs(verbService.getPaginatedVerbs(0, 10));
-        verbsPage.setMaxPage(verbService.getLastPageForPaginatedVerbs(10));
+        verbsPage.setSize(10);
+        verbsPage.setVerbs(verbService.getPaginatedVerbs(verbsPage.getCurrentPage(), verbsPage.getSize()));
+        verbsPage.setMaxPage(verbService.getLastPageForPaginatedVerbs(verbsPage.getSize()));
         return verbsPage;
     }
 
